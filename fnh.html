@@ -793,7 +793,7 @@ pre.msg{background:var(--panel);border:2px solid var(--line);border-radius:10px;
 /* FNH_BUILD. A commit hook in the pm-final clone rewrites this time on every commit that touches
    fnh.html. The version check at the bottom reads it, and the script text below it, to tell an
    old copy of this page from the newest one. */
-const BUILD = "2026-10-31T04:37:13Z";
+const BUILD = "2026-11-01T00:46:47Z";
 const SELF = document.currentScript ? document.currentScript.textContent : "";
 const GROUPS = [1,2,3,4];
 /* Two boards stacked. Green on top: five topics, four values, open to everyone and raced
@@ -1422,6 +1422,7 @@ function tryPass(){
       try{ localStorage.setItem("fnh-host","1"); }catch(e){}
       $("pw").value = ""; goTo(gateNext);
     }else if(r.status === 401){ $("pwerr").textContent = "Not that one. Ask Johnny."; }
+    else if(r.status === 429){ $("pwerr").textContent = "Too many wrong tries. Wait 10 minutes."; }
     else{ $("pwerr").textContent = "Couldn't check that. Try again."; }
   })
   .catch(function(){ $("pwgo").disabled = false; $("pwerr").textContent = "No connection. Check the wifi and try again."; });
